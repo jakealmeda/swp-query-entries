@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // include query file
 include_once( 'swp_wp_query.php' );
+include_once( 'swp_get_field.php' );
 
 class SWPPostCustomLoop {
 
@@ -116,7 +117,7 @@ class SWPPostCustomLoop {
 	}
 
 	// SIMPLE VALIDATION OF PARAMETER CONTENTS
-	private function swp_validate_param( $parameter, $value ) {
+	public function swp_validate_param( $parameter, $value ) {
 
 		if( $parameter == $value ) {
 			return NULL;
