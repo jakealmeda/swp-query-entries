@@ -122,7 +122,15 @@ class SWP_Get_Custom_Field {
 				//var_dump( $get_this );
 				
 			} else {
-				return do_shortcode( $get_this );
+				echo  $content;
+				if( $link ) {
+					$a_link = "<a href='".do_shortcode( $link )."' ".$targ.">".do_shortcode( $get_this )."</a>";
+				} else {
+					$a_link = do_shortcode( $get_this );
+				}
+
+				return do_shortcode( $a_link );
+
 			}
 		}
 
