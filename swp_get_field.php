@@ -99,8 +99,6 @@ class SWP_Get_Custom_Field {
 			
 			$this_image = wp_get_attachment_image( $get_this, $size );
 			
-			
-			
 			if( $link ) {
 				
 				// check if link is for itself
@@ -114,6 +112,7 @@ class SWP_Get_Custom_Field {
 			}
 			
 			return $a_link;
+			
 		} else {
 			
 			if( is_array( $get_this ) ) {
@@ -125,8 +124,7 @@ class SWP_Get_Custom_Field {
 				//var_dump( $get_this );
 				
 			} else {
-				//echo  $content;
-				
+
 				// validate if link 				
 				if( strtolower( $link ) == 'true' ) {
 
@@ -146,12 +144,6 @@ class SWP_Get_Custom_Field {
 
 			}
 		}
-
-	}
-
-	// VALIDATE LINK IF IT REFERS TO A CUSTOM FIELD WHICH CONTAINS THE ACTUAL LINK
-	private function swp_link_validator( $id, $link, $single = TRUE ) {
-		// get_post_meta($post_id, $key, $single);
 
 	}
 
