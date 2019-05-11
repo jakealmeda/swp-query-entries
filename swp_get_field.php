@@ -19,11 +19,6 @@ class SWP_Get_Custom_Field {
 		), $params));
 
 		$z = new SWPPostCustomLoop();
-		/*if( $z->swp_validate_param( $class, "class" ) ) {
-			$selector = $class;
-		} else {
-			$selector = "";
-		}*/
 
 		if( $z->swp_validate_param( $id, "id" ) ) {
 			// can be post ID, slug or identifier (custom field)
@@ -112,7 +107,7 @@ class SWP_Get_Custom_Field {
 			}
 			
 			return $a_link;
-			
+
 		} else {
 			
 			if( is_array( $get_this ) ) {
