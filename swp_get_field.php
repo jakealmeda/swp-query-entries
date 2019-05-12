@@ -79,8 +79,10 @@ class SWP_Get_Custom_Field {
 			$this_id = get_the_ID();
 		}
 
+		// -----------------------------------------------
 		// GET CUSTOM FIELD DATA
 		$get_this = get_post_meta( $this_id, $field, TRUE );
+		// -----------------------------------------------
 
 		// validate target
 		if( $target == "_blank" ) {
@@ -94,16 +96,20 @@ class SWP_Get_Custom_Field {
 			
 			$this_image = wp_get_attachment_image( $get_this, $size );
 			
-			if( $link ) {
-				
-				// check if link is for itself
-				if( $link == "_self" ) {
-					$link = wp_get_attachment_image_src( $get_this, 'FULL' )[0];
-				}
-				
+			// check if link is for itself
+			if( $link == "_self" ) {
+
+				$link = wp_get_attachment_image_src( $get_this, 'FULL' )[0];
 				$a_link = "<a href='".$link."' ".$targ.">".$this_image."</a>";
+
+			} elseif( strtolower( $link ) == 'true' ) {
+				
+				$a_link = "<a href='".$get_this."' ".$targ.">".$this_image."</a>";
+
 			} else {
+
 				$a_link = $this_image;
+
 			}
 			
 			return $a_link;
@@ -125,7 +131,7 @@ class SWP_Get_Custom_Field {
 
 					// use content if indicated
 					if( $content ) {
-						$a_link = "<a href='".$get_this."' ".$targ.">".$content."</a>";
+						$a_link = "<a href='".$get_this."' ".$targ.">".do_shortcode( $content )."</a>";
 					} else {
 						// use the link as the name
 						$a_link = "<a href='".$get_this."' ".$targ.">".do_shortcode( $get_this )."</a>";
