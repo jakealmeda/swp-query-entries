@@ -84,7 +84,7 @@ class SWP_Get_Custom_Field {
 		$get_this = get_post_meta( $this_id, $field, TRUE );
 		if( !$get_this ) {
 			// GET WP NATIVE FIELD INSTEAD
-			$get_this = get_post_field( $field, $post_id, $context = 'display' );
+			$get_this = $this->swp_get_wpnative( $this_id, $field );
 		}
 		// -----------------------------------------------
         
@@ -149,6 +149,12 @@ class SWP_Get_Custom_Field {
                 
 			}
 		}
+        
+	}
+
+	public function swp_get_wpnative( $post_id, $field ) {
+        
+		return get_post_field( $field, $post_id, $context = 'display' );
         
 	}
 
