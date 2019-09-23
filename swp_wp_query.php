@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class SWPWPQueryPosts {
 	
-	public function swp_query_archive_posts( $post_type, $num_of_posts, $tax_name, $tax_term, $paged, $orderbymeta, $orderby, $order ) {
+	public function swp_query_archive_posts( $post_type, $page_id, $num_of_posts, $tax_name, $tax_term, $paged, $orderbymeta, $orderby, $order ) {
 
 		// sort
 		if( is_null( $orderby ) ) {
@@ -36,6 +36,7 @@ class SWPWPQueryPosts {
 
 		$args = array(
 			'post_type' 		=> $post_type,
+			'page_id'			=> $page_id,
 			'post_status'    	=> 'publish',
 			'posts_per_page' 	=> $num_of_posts,
 			//'paged' 			=> $paged,

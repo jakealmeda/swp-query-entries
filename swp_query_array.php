@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SWP - Query Array
  * Description: Custom querying of entries
- * Version: 1.0
+ * Version: 1.3
  * Author: Jake Almeda
  * Author URI: http://smarterwebpackages.com/
  * Network: true
@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // include query file
 include_once( 'swp_wp_query.php' );
 include_once( 'swp_get_field.php' );
+include_once( 'swp_video_shortcode.php' );
 
 class SWPPostCustomLoop {
 
@@ -24,6 +25,7 @@ class SWPPostCustomLoop {
 
 		extract(shortcode_atts(array(
 			'post_type' 	=> 'post_type',
+			'page_id'		=> 'page_id',
 			'template'		=> 'template',
 			'tax_name'		=> 'tax_name',
 			'tax_term'		=> 'tax_term',
@@ -57,7 +59,8 @@ class SWPPostCustomLoop {
 		//$paged1 = isset( $_GET['paged1'] ) ? (int) $_GET['paged1'] : 1;
 		$swp_query_posts = new SWPWPQueryPosts();
 		$the_query = $swp_query_posts->swp_query_archive_posts(
-											$post_type,
+											$this->swp_validate_param( $post_type, 'post_type' ),
+											$this->swp_validate_param( $page_id, 'page_id' ),
 											$show,
 											$this->swp_validate_param( $tax_name, 'tax_name' ),
 											$this->swp_validate_param( $tax_term, 'tax_term' ),
@@ -66,7 +69,7 @@ class SWPPostCustomLoop {
 											$this->swp_validate_param( $orderby, 'orderby' ),
 											$this->swp_validate_param( $order, 'order' )
 										);
-
+    
 		// The Loop
 		if ( $the_query->have_posts() ) {
             

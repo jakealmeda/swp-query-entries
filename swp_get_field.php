@@ -111,15 +111,9 @@ class SWP_Get_Custom_Field {
 				$a_link = "<a href='".$get_this."' ".$targ.">".$this_image."</a>";
                 
 			} else {
-				// $link might be a hardcoded URL
-				/*if( $link ) {
-					$a_link = "<a href='".$link."' ".$targ.">".$this_image."</a>";
-				} else {*/
-					// no link specified
-					$a_link = $this_image;
-				//}
                 
 				$a_link = $this_image;
+                
 			}
 			
 			return $a_link;
@@ -164,30 +158,11 @@ class SWP_Get_Custom_Field {
         
 	}
 
-	// SHOW VIDEO
-	public function swp_show_video_func( $params, $content = null ) {
-
-		extract(shortcode_atts(array(
-			'id' 		=> 'id',
-			'field'		=> 'field',
-		), $params));
-
-		$var = get_post_meta( $id, $field, TRUE );
-		//var_dump( $var['url'] );
-		if( $var ) {
-			return do_shortcode( '[swp_youtube url="'.$var['url'].'" width="600" height="400" responsive="yes" autoplay="no" mute="no" class=""]' );
-		}
-
-	}
-
 	// CONSTRUCT
 	public function __construct() {
         
 		if( !is_admin() ) {
 			add_shortcode( 'swp_get_field', array( $this, 'swp_gcf_main_func' ) );
-
-			// display video thru Shortcodes Ultimate
-			add_shortcode( 'swp_show_video', array( $this, 'swp_show_video_func' ) );
 		}
         
 	}
